@@ -34,14 +34,3 @@ This site supports three courses:
 * a five-day React with Redux, 
 * a three-day React (without Redux),
 * a four-day React Native
-
-As you know there's a lot of overlap between these topics so there is some instructions and solutions that are common between them.
-
-Setup is common for all three. The server is common for all three.
-
-The 5-day React/Redux class starts with React intro and setup then does a deep-dive into Redux with labs and everything.
-
-The 3-day React and 4-day React Native classes have a 45-minute Redux In a Nutshell lecture. The lab for that topic is simply installing Redux through npm and apply our pre-written Redux code.
-
-The only difference between 3-day React and 5-day React/Redux is that we do a 45-minute "nutshell" overview with one and a 2-day deep dive with the other.
-

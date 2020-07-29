@@ -1,4 +1,5 @@
 import React from 'react';
+import'material-design-lite/material';
 
 export const LandingPage = () => {
     console.log("LandingPage");

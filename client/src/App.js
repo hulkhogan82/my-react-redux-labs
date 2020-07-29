@@ -16,8 +16,11 @@ import { Login } from './Authentication/Login';
 import'material-design-lite/dist/material.min.css';
 import'material-design-lite/dist/material.purple-indigo.min.css';
 
-function App() {
+import { Currency } from './helpers/Currency';
+import { Date } from './helpers/Date';
 
+function App() {
+  console.log(1234.567.toCurrency());
   const [state, setState] = useState(store.getState());
   useEffect(() => {
     store.subscribe(() => setState({ ...store.getState() }));
