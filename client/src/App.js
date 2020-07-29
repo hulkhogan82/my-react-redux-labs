@@ -59,6 +59,9 @@ function App() {
             <main className="mdl-layout__content">
               <Account></Account>
               <Login></Login>
+              <LandingPage></LandingPage>
+              <FilmDetails></FilmDetails>
+              <PickSeats></PickSeats>
             </main>
             <footer>
             </footer>

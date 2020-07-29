@@ -1,4 +1,5 @@
 import React from 'react';
+import'material-design-lite/material';
 import * as seatImage from '../bundledImages/seat.png';
 import{ store } from '../store/store';
 import{ actions } from '../store/actions';
@@ -9,6 +10,11 @@ export const PickSeats = () => {
     let currentShowing = { id: 0, film_id: 0, theater_id: 0, showing_time: new Date() }; 
     let currentFilm = { title: "A Cool Movie" };
     let currentTheater = { id: 0, name: "Theater #1" };
+
+    const currentDate = new Date();
+    const state = store.getState();
+    const films = state.films;
+    const film = films[1] || {};
     
     function reserveSeat(seat) {
         console.log(seat);
@@ -22,13 +28,13 @@ export const PickSeats = () => {
                 <h1 className="mdl-card__title-text">Where would you like to sit?</h1>
             </div>
 
-            <p>Watching FILM_TITLE in THEATER_NAME on SHOWING_DATE at SHOWING_TIME</p>
+            <p>Watching {film.title} in {film.currentTheater} on {Date.toShowingDateString} at {Date.toShowingTimeString}</p>
             <section style={styles.tablesSection}>
                 <p>LIST OF TABLES WILL GO HERE</p>
                 <p>Here is one table:</p>
                 <div style={styles.wrapper}>
                     <div style={styles.tableWrapper}>
-                        <div style={{ ...styles.tableItself }}>TABLE_NUMBER_HERE</div>
+                        <div style={{ ...styles.tableItself }}>{table.table_number}</div>
                     </div>
                     <div style={styles.seatWrapper}>
                         <p>foo</p>
