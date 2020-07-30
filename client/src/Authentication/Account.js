@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { store } from '../store/store';
 import { actions } from '../store/actions';
 
 export const Account = () => {
     console.log("Account");
+    const [showPassword, setShowPassword] = useState(false);
+    const [showPasswordAgain, setShowPasswordAgain] = useState(false);
+    const onClick = () => setShowPassword(!showPassword);
+    const onClickAgain = () => setShowPasswordAgain(!showPasswordAgain);
+
     function register(e) {
         e.preventDefault();
         console.log("Hello World From Account Component");
@@ -35,13 +40,15 @@ export const Account = () => {
                         <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style={styles.inputDivs}>
                             <input id="password" type={showPassword ? "text" : "password"} className="mdl-textfield__input" />
                             <label className="mdl-textfield__label" htmlFor="password">Password</label>
+                            <input type="button" value={showPassword ? "Hide": "Show"} onClick={onClick}></input>
                         </div>
                     </div>
 
                     <div style={styles.inputDivs}>
                         <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style={styles.inputDivs}>
-                            <input id="password2" type={showPassword ? "text" : "password"} className="mdl-textfield__input" />
+                            <input id="password2" type={showPasswordAgain ? "text" : "password"} className="mdl-textfield__input" />
                             <label className="mdl-textfield__label" htmlFor="password2">Password (again)</label>
+                            <input type="button" value={showPasswordAgain ? "Hide": "Show"} onClick={onClickAgain}></input>
                         </div>
                     </div>
 

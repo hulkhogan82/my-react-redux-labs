@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { store } from '../store/store';
 import { actions } from '../store/actions';
 
 export const Login = () => {
     console.log("Login");
-    function register(e){
+
+    const [showPassword, setShowPassword] = useState(false);
+    const onClick = () => setShowPassword(!showPassword);
+    console.log('showPassword:' + showPassword);
+
+    function register(e) {
         e.preventDefault();
         console.log("Hello world from Login component");
         store.dispatch(actions.login({
             email: e.target['email'].value,
-            password: e.target['password'].value }));
+            password: e.target['password'].value
+        }));
     }
     return (
         <section style={styles.wrapper} className="mdl-card mdl-shadow--2dp">
@@ -20,7 +26,7 @@ export const Login = () => {
                 <div>
                     <p>First time user? <a href="/account">Register</a></p>
                 </div>
-                <form onSubmit={(e) => {register(e)}}> 
+                <form onSubmit={(e) => { register(e) }}>
 
                     <div style={styles.inputDivs}>
                         <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style={styles.inputDivs}>
@@ -31,8 +37,9 @@ export const Login = () => {
 
                     <div style={styles.inputDivs}>
                         <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style={styles.inputDivs}>
-                            <input id="password" className="mdl-textfield__input" />
+                            <input id="password" className="mdl-textfield__input" type={showPassword ? 'Text':'password'}/>
                             <label className="mdl-textfield__label" htmlFor="email">Password</label>
+                            <input id="showPasswordBtn" type="button" value={showPassword ? 'Hide':'Show'} onClick={onClick}></input>
                         </div>
                     </div>
 
@@ -43,4 +50,4 @@ export const Login = () => {
         </section>
     )
 }
-const styles= {};
+const styles = {};
