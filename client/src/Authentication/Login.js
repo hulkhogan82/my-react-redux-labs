@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { store } from '../store/store';
 import { actions } from '../store/actions';
 
@@ -6,6 +6,8 @@ export const Login = () => {
     console.log("Login");
 
     const [showPassword, setShowPassword] = useState(false);
+    const [state, setState] = useState(store.getState());
+
     const onClick = () => setShowPassword(!showPassword);
     console.log('showPassword:' + showPassword);
 
@@ -17,6 +19,9 @@ export const Login = () => {
             password: e.target['password'].value
         }));
     }
+
+    console.log('state.user (Login form):' + state.user);
+
     return (
         <section style={styles.wrapper} className="mdl-card mdl-shadow--2dp">
             <div className="mdl-card__title mdl-color--primary mdl-color-text--white">
