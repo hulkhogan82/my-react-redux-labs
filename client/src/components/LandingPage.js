@@ -42,10 +42,39 @@ export const LandingPage = () => {
 const styles = {
     poster: {
         backgroundSize: "100% 100%",
+        maxWidth: "95%",
+        objectFit: "contain",
         width: "200px",
         height: "200px",
         fontWeight: "bold", display: "flex",
         alignItems: "center", justifyContent: "center",
         borderRadius: "10px 10px 0px 0px",
+    },
+    header: {
+        width: "95vw", margin: "10px auto", padding: "10px",
+    }, filmsWrapper: {
+        display: 'flex',
+        flexWrap: 'wrap',
+    },
+    wrapper: {
+        width: '300px', margin: '30px', cursor: 'pointer',
+    }, innerWrapper: {
+        display: 'flex',
+        flexDirection: 'row',
+    },
+    posterDiv: {
+        flex: '1 1 25%', padding: "5px",
+    }, textDiv: {
+        flex: '1 1 25%',
+        padding: "10px 5px 10px 5px",
+    },
+    title: {
+        fontSize: '1.75rem', fontWeight: '900', textTransform: 'uppercase', margin: '2px',
+    }, tagline: {
+        margin: '2px',
+        lineHeight: '1em',
+    },
+    runtimeP: {
+        fontSize: "0.75rem", margin: '2px',
     },
 }

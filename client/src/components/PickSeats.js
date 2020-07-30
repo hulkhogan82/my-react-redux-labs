@@ -58,4 +58,19 @@ const styles = {
         alignItems: "center", justifyContent: "center",
         borderRadius: "10px 10px 0px 0px",
     },
+    header: {
+        width: "95vw", margin: "10px auto", padding: "10px",
+        }, tablesSection: {
+        paddingBottom: '40px',
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr',
+        }, wrapper: {
+        margin: "20px", },
+        tableWrapper: {
+        display: 'flex', justifyContent: "center", alignItems: "center",
+        }, tableItself: {
+        height: "40px", backgroundColor: "blue", borderRadius: "20px", color: "white", fontSize: "20px", display: 'flex', justifyContent: "center", alignItems: "center",
+        }, seatsWrapper: {
+        display: "flex", justifyContent: "center", alignItems: "center",
+        },
 }

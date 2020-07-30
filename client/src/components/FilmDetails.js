@@ -36,10 +36,29 @@ export const FilmDetails = () => {
 const styles = {
     poster: {
         backgroundSize: "100% 100%",
+        maxWidth: "95%",
+        objectFit: "contain",
         width: "200px",
         height: "200px",
         fontWeight: "bold", display: "flex",
         alignItems: "center", justifyContent: "center",
         borderRadius: "10px 10px 0px 0px",
+    },
+    container: {
+        width: '95%', margin: '20px 20px', padding: '20px',
+    }, poster: {
+        maxWidth: '95%',
+        objectFit: 'contain',
+    },
+    wrapper: {
+        marginTop: '20px',
+    },
+    headline: {
+        fontSize: '1.2em',
+    },
+    showingTimesWrapper: {
+        display: 'flex', flexWrap: 'wrap',
+    }, tile: {
+        background: 'black', color: 'white', fontWeight: 'bold', padding: '20px', margin: '10px',
     },
 }
