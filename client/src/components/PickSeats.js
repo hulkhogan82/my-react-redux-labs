@@ -15,16 +15,26 @@ export const PickSeats = () => {
     const state = store.getState();
     const films = state.films;
     const film = films[1] || {};
-    
+
+    let showingId = 1;
+
     function reserveSeat(seat) {
         console.log(seat);
         store.dispatch(actions.addSeatToCart(seat, currentShowing));
         }
     //useEffect(() => { store.dispatch(actions.fetchReservationsForShowing(1)); });
 
-    useEffect(() => { store.dispatch(actions.fetchReservationsForShowing(1));
-    }, [1]);
-         
+    useEffect(() => { store.dispatch(actions.fetchReservationsForShowing(showingId));
+    }, [showingId]);
+
+    if (state.showings && state.showings.length) {
+        currentShowing = state.showings.find(showing => showing.id === +showingId); 
+        currentFilm = state.films.find(film => film.id === currentShowing.film_id); 
+        currentTheater = state.theaters.find(theater => theater.id === currentShowing.theater_id) || {};         
+    }
+    const tables = currentTheater && currentTheater.tables;          
+    console.log("tables:"+tables);
+
     console.log("PickSeats");
     return (
         <section style={styles.header} className="mdl-card mdl-shadow--2dp">
@@ -32,49 +42,79 @@ export const PickSeats = () => {
                 <h1 className="mdl-card__title-text">Where would you like to sit?</h1>
             </div>
 
-            <p>Watching {film.title} in {film.currentTheater} on {Date.toShowingDateString} at {Date.toShowingTimeString}</p>
-            <section style={styles.tablesSection}>
-                <p>LIST OF TABLES WILL GO HERE</p>
-                <p>Here is one table:</p>
+            <p>Watching {film.title} in {film.currentTheater} on {Date.toShowingDateString} at {Date.toShowingTimeString}</p>            
+            <section style={styles.tablesSection}>          
+            {tables && tables.map(table => (<>  
                 <div style={styles.wrapper}>
                     <div style={styles.tableWrapper}>
-                        <div style={{ ...styles.tableItself }}>{table.table_number}</div>
+                    <div style={{ ...styles.tableItself, ...getTableWidth(table.seats) }}>{table.table_number}</div>
                     </div>
                     <div style={styles.seatWrapper}>
-                        <p>foo</p>
+                    {table.seats && table.seats.map(seat => (
+                        <div style={styles.seatWrapper}>
                         <div style={{ ...styles.seatItself }} onClick={() => reserveSeat(seat)} >#</div>
-                        <p>bar</p>
+                        </div>
+                    ))}                      
                     </div>
                 </div>
-            </section>
+                </>))}
+            </section>            
             <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style={styles.submitButton} >Check out</button>
         </section>
     )
 }
+function getTableWidth(seats) {
+    return {width: seats.length * 40 + "px"}
+    }
+     
 const styles = {
-    seatWrapper: { margin: "5px", },
-    seatItself: {
-        backgroundImage: `url(${seatImage})`,
-        backgroundSize: "100% 100%",
-        width: "200px",
-        height: "200px",
-        fontWeight: "bold", display: "flex",
-        alignItems: "center", justifyContent: "center",
-        borderRadius: "10px 10px 0px 0px",
+    seatWrapper: {
+      margin: "5px",
     },
+    seatItself: {
+      backgroundImage: `url(${seatImage})`,
+      backgroundSize: "100% 100%",
+      width: "30px",
+      height: "30px",
+      fontWeight: "bold",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      borderRadius: "10px 10px 0px 0px",
+    },
+  
     header: {
-        width: "95vw", margin: "10px auto", padding: "10px",
-        }, tablesSection: {
-        paddingBottom: '40px',
-        display: 'grid',
-        gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr',
-        }, wrapper: {
-        margin: "20px", },
-        tableWrapper: {
-        display: 'flex', justifyContent: "center", alignItems: "center",
-        }, tableItself: {
-        height: "40px", backgroundColor: "blue", borderRadius: "20px", color: "white", fontSize: "20px", display: 'flex', justifyContent: "center", alignItems: "center",
-        }, seatsWrapper: {
-        display: "flex", justifyContent: "center", alignItems: "center",
-        },
-}
+      width: "95vw",
+      margin: "10px auto",
+      padding: "10px",
+    },
+    tablesSection: {
+      paddingBottom: '40px',
+      display: 'grid',
+      gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr',
+    },
+    wrapper: {
+      margin: "20px",
+    },
+    tableWrapper: {
+      display: 'flex',
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    tableItself: {
+      height: "40px",
+      backgroundColor: "blue",
+      borderRadius: "20px",
+      color: "white",
+      fontSize: "20px",
+      display: 'flex',
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    seatsWrapper: {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+  
+  };
