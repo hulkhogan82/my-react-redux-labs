@@ -74,12 +74,12 @@ function App() {
                   }
                 </nav>
               </div>
-              <main className="mdl-layout__content">
-                <Account></Account>
-                <Login></Login>
+              <main className="mdl-layout__content">                
                 <LandingPage></LandingPage>
                 <FilmDetails></FilmDetails>
                 <PickSeats></PickSeats>
+                <Account></Account>
+                <Login></Login>
               </main>
               <footer>
               </footer>

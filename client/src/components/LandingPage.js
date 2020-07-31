@@ -1,6 +1,7 @@
 import React from 'react';
 import 'material-design-lite/material';
 import { store } from '../store/store';
+import {FilmBrief} from './FilmBrief';
 
 export const LandingPage = () => {
     const currentDate = new Date();
@@ -26,16 +27,8 @@ export const LandingPage = () => {
 
                 <section style={styles.wrapper} className="mdl-card mdl-shadow--2dp">
                 {state.films.map(film => (
-                    <div style={styles.innerWrapper} key={film.id}>
-                        <div style={styles.posterDiv}>
-                            <img src={film.poster_path} alt="" style={styles.poster} />
-                        </div>
-                        <div style={styles.textDiv}>
-                                <div style={styles.title}>{film.title}</div>
-                                <div style={styles.runtimeP}>{film.runtimeP}</div>
-                                <div style={styles.tagline}>{film.tagline}</div>
-                        </div>
-                    </div>
+                    <FilmBrief film={film} showings={state.showings} currentDate={currentDate} key={film.id} />
+                    //<FilmBrief film={film} key={film.id} />
                     ))}
                     <div style={styles.showings}>
                         Showing times will go here
